@@ -36,3 +36,14 @@ main {
     border-radius: 1rem;
     font-size: 1.3rem;
 }
+
+.form-heading {
+    border-top: 1px solid black;
+}
+
+.form-heading h6 {
+    text-align: center;
+    background-color: white;
+    width: 200px;
+    transform: translateY(-50%);
+}

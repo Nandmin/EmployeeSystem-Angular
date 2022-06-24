@@ -1,10 +1,12 @@
 <div class="container-fluid g-0">
   <app-header></app-header>
 
-  <main>
+  <main class="black-border">
     <div class="toolbar">
       <div class="add-employee">
-        <button type="button" class="btn btn-outline-success btn-lg">Add employee</button>
+        <!-- data-bs-toggle="modal" és data-bs-target="#exampleModal": ezzel kötjük össze a button-t a modal form-al -->
+        <!-- Miután az összekapcsolás megtörtént a Button trigger modal törölhető -->
+        <button type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Add employee</button>
 
          
       </div>
@@ -23,12 +25,12 @@
 </div>
 
  <!-- Button trigger modal -->
- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+ <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" #tempButton>
   Launch demo modal
-</button>
+</button> -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -37,23 +39,23 @@
       </div>
       <div class="modal-body">
         
-        <form>
+        <form [formGroup]="employeeForm">
           <div class="row">
             <div class="col">
-                <input type="text" class="form-control" placeholder="First Name">
+                <input type="text" class="form-control" placeholder="First Name" formControlName="firstName">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Last Name">
+              <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
             </div>
           </div>
-          <div class="row">
-            <div class="col">
+          <div class="row mt-5">
+            <div class="col form-heading">
               <h6 class="text-secondary fst-italic">Personal information</h6>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <label for="datepicker" class="form-label">Birthdate</label>
+              <label for="datepicker" class="form-label" formControlName="birthday">Birthdate</label>
               <input type="date" class="form-control" id="datepicker">
             </div>
             <div class="col">
@@ -63,24 +65,57 @@
               <div class="row">
                 <div class="col">
                   <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" name="gender" id="male" value="m">
+                    <input type="radio" class="form-check-input" name="gender" id="male" value="m" formControlName="gender">
                     <label for="male" class="form-check-label">Male</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" name="gender" id="female" value="f">
+                    <input type="radio" class="form-check-input" name="gender" id="female" value="f" formControlName="gender">
                     <label for="female" class="form-check-label">Female</label>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          
           <div class="row mt-3">
             <div class="col">
-              <select class="form-select">
+              <select class="form-select" formControlName="education">
                 <option value="default" selected>Select your Education</option>
+                <option *ngFor="let option of eudcationOptions; let i = index;" value="{{i}}">
+                  {{ option | titlecase }}
+                </option>
               </select>
             </div>
           </div>
+          
+          <div class="row mt-3">
+            <div class="col">
+              <label for="profile" class="form-label">Profile image</label>
+              <input type="file" class="form-control" name="profile" id="profile" #fileInput>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col form-heading">
+              <h6 class="text-secondary fst-italic">Job information</h6>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Company Name" formControlName="company">
+            </div>
+          </div>
+        
+          <div class="row mt-3">
+            <div class="col">
+              <input type="number" class="form-control" placeholder="Job experience (years)" formControlName="jobExperience">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control" placeholder="Salary (LPA)" formControlName="salary">
+            </div>
+          </div>
+
         </form>
 
       </div>
