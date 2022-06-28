@@ -49,7 +49,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       });
  
       this.employeeService.getEmployees().subscribe(res => {
-        console.log(res);
+        for (let emp of res) {
+          this.employees.unshift(emp);
+        }
+        this.employeesToDisplay = this.employees;
       });
   }
 
