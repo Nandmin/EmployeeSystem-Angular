@@ -8,9 +8,9 @@ import { Employee } from '../model/employee.model';
   providedIn: 'root'
 })
 export class EmployeeService {
-  baseUrl = 'http://localhost:3000/posts'
+  baseUrl = 'http://localhost:3000/posts';
 
-  constructor( private http:HttpClient) { }
+  constructor( private http: HttpClient) { }
 
   getEmployees(){
     return this.http.get<Employee[]>(this.baseUrl);

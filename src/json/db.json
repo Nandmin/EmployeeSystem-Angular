@@ -1,16 +1,39 @@
 {
   "posts": [
     {
-      // id: '',
-      // firstName: '',
-      // lastName: '',
-      // birthdate: '',
-      // gender: '',
-      // education: '',
-      // company: '',
-      // jobExperience: '',
-      // salary: '',
-      // profile: ''
+      "firstName": "James",
+      "lastName": "Town",
+      "birthdate": "2010-01-31",
+      "gender": "m",
+      "education": "Graduate",
+      "company": "sfd",
+      "jobExperience": 21,
+      "salary": 12,
+      "id": 1
+    },
+    {
+      "firstName": "Elek",
+      "lastName": "Teszt",
+      "birthdate": "2022-01-01",
+      "gender": "m",
+      "education": "Post graduate",
+      "company": "wert",
+      "jobExperience": 2,
+      "salary": 42,
+      "profile": "gettyimages-1241429899-2048x2048.jpg",
+      "id": 2
+    },
+    {
+      "firstName": "Simon",
+      "lastName": "Popp",
+      "birthdate": "2022-06-06",
+      "gender": "m",
+      "education": "Graduate",
+      "company": "fsdg",
+      "jobExperience": 43,
+      "salary": 234,
+      "profile": "gettyimages-1241417987-2048x2048.jpg",
+      "id": 3
     }
   ],
   "comments": [

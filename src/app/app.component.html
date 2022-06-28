@@ -38,11 +38,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        
+        <!-- a mezőket groupba foglaljuk, ígay könnyebb hivatkozni rájuk -->
         <form [formGroup]="employeeForm">
           <div class="row">
             <div class="col">
-                <input type="text" class="form-control" placeholder="First Name" formControlName="firstName">
+                <input type="text" class="form-control" formControlName="firstName" placeholder="First Name">
             </div>
             <div class="col">
               <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
@@ -55,8 +55,8 @@
           </div>
           <div class="row">
             <div class="col">
-              <label for="datepicker" class="form-label" formControlName="birthday">Birthdate</label>
-              <input type="date" class="form-control" id="datepicker">
+              <label for="datepicker" class="form-label">Birthdate</label>
+              <input type="date" class="form-control" formControlName="birthday" id="datepicker">
             </div>
             <div class="col">
               <div class="row">
@@ -121,7 +121,7 @@
       </div>
       <div class="modal-footer">
         <!-- data-bs-dismiss="modal" kattintás után bezárja a form-ot is -->
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Insert</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addEmployee()">Insert</button>
       </div>
     </div>
   </div>

@@ -9,7 +9,7 @@ import { EmployeeService } from './services/employee.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChild('tempButton') buttontemp: any;
+  @ViewChild('fileInput') fileInput: any;
   title = 'EmployeeSystem - Angular';
 
   // ha nem adja hozzá automatikusan, akkor az approuting-ben fel kell venni
@@ -58,8 +58,43 @@ export class AppComponent implements OnInit, AfterViewInit {
     // this.buttontemp.nativeelement.click()
   }
 
+  // a html form mező értékeit lekérdezzük az egyedi id alapján pl. formControlName="salary"> ---> public Get
+  // ha megvan a kapcsolat, akkor lehet az értéket változóba tenni, majd szabadon ide-oda adni ---> addEmployee
+
+  addEmployee(){
+    let employee: Employee = {
+      firstName: this.FirstName.value,
+      lastName: this.LastName.value,
+      birthdate: this.BirthDay.value,
+      gender: this.Gender.value,
+      // mivel ez combo box, ami egy számot ad vissza értékül
+      education: this.eudcationOptions[parseInt(this.Education.value)],
+      company: this.Company.value,
+      jobExperience: this.JobExperience.value,
+      salary: this.Salary.value,
+      profile: this.fileInput.nativeElement.files[0]?.name
+    }
+
+    this.employeeService.postEmployee(employee).subscribe(res => {
+      this.employees.unshift(res);
+      this.clearForm();
+    });
+  }
+
+  clearForm(){
+    this.FirstName.setValue('');
+    this.LastName.setValue('');
+    this.BirthDay.setValue('');
+    this.Gender.setValue('');
+    this.Education.setValue('');
+    this.Company.setValue('');
+    this.JobExperience.setValue('');
+    this.Salary.setValue('');
+    this.fileInput.nativeElement.value = '';
+  }
+
   public get FirstName(): FormControl {
-    return this.employeeForm.get('firsName') as FormControl;
+    return this.employeeForm.get('firstName') as FormControl;
   }
   
   public get LastName(): FormControl {
