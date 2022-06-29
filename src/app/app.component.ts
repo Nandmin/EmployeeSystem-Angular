@@ -10,6 +10,7 @@ import { EmployeeService } from './services/employee.service';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('fileInput') fileInput: any;
+  @ViewChild('addEmployeeButton') addEmployeeButton: any;
   title = 'EmployeeSystem - Angular';
 
   // ha nem adja hozzá automatikusan, akkor az approuting-ben fel kell venni
@@ -82,6 +83,46 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.employees.unshift(res);
       this.clearForm();
     });
+  }
+
+  removeEmployee(event: any){
+    this.employees.forEach((val, index) => {
+      if (val.id == parseInt(event)){
+        this.employeeService.deleteEmployee(event).subscribe(res => {
+          this.employees.splice(index, 1);
+        });
+      }
+    });
+  }
+
+  editEmployee(event: any){
+    this.employees.forEach((val, ind) => {
+      if (val.id == event) {
+        this.setForm(val);
+      }
+    });
+
+    this.removeEmployee(event);
+    this.addEmployeeButton.nativeElement.click();
+  }
+
+  // form feltöltése a user adataival
+  setForm(emp: Employee) {
+    this.FirstName.setValue(emp.firstName);
+    this.LastName.setValue(emp.lastName);
+    this.BirthDay.setValue(emp.birthdate);
+    this.Gender.setValue(emp.gender);
+    
+    let educationIndex = 0;
+    this.eudcationOptions.forEach((val, index) => {
+      if (val == emp.education) educationIndex = index;
+    });
+    this.Education.setValue(educationIndex);
+
+    this.Company.setValue(emp.company);
+    this.JobExperience.setValue(emp.jobExperience);
+    this.Salary.setValue(emp.salary);
+    this.fileInput.nativeElement.value = '';
   }
 
   clearForm(){

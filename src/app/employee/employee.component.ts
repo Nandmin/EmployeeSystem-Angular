@@ -11,6 +11,7 @@ export class EmployeeComponent implements OnInit {
   @Input() employee: Employee;
   // EventEmitter esetében stream helyett import angular corer kell
   @Output() onRemoveEmployee = new EventEmitter<number>();
+  @Output() onEditEmployee = new EventEmitter<number>();
   
   constructor() {
     this.employee = {
@@ -30,8 +31,12 @@ export class EmployeeComponent implements OnInit {
     console.log(this.employee);
   }
 
-  deleteEmployee(): void {
+  deleteEmployee() {
     this.onRemoveEmployee.emit(this.employee.id);
+  }
+
+  editEmployee() {
+    this.onEditEmployee.emit(this.employee.id);
   }
 
 }

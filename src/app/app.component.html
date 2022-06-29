@@ -6,7 +6,7 @@
       <div class="add-employee">
         <!-- data-bs-toggle="modal" és data-bs-target="#exampleModal": ezzel kötjük össze a button-t a modal form-al -->
         <!-- Miután az összekapcsolás megtörtént a Button trigger modal törölhető -->
-        <button type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Add employee</button>
+        <button type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"  #addEmployeeButton>Add employee</button>
       </div>
 
       <div class="search-employees">
@@ -23,7 +23,7 @@
 
         <div class="row mt-4" *ngFor="let employee of employeesToDisplay; let ei = index;">
           <div class="col">
-            <app-employee [employee]="employee"></app-employee>
+            <app-employee [employee]="employee" (onRemoveEmployee)="removeEmployee($event)" (onEditEmployee)="editEmployee($event)"></app-employee>
           </div>
         </div>
     </div>
