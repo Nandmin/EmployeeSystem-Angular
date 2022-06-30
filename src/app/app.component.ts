@@ -137,6 +137,22 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.fileInput.nativeElement.value = '';
   }
 
+  searchEmployees(event: any) {
+    let filteredEmployees: Employee[] = [];
+
+    if (event == '') {
+      this.employeesToDisplay = this.employees;
+    }
+    else {
+      filteredEmployees = this.employees.filter((val, index) => {
+        let tartgetKey = val.firstName.toLowerCase() + '' + val.lastName.toLowerCase();
+        let searchKey = event.toLowerCase();
+        return tartgetKey.includes(searchKey);
+      });
+      this.employeesToDisplay = filteredEmployees;
+    }
+  }
+
   public get FirstName(): FormControl {
     return this.employeeForm.get('firstName') as FormControl;
   }
